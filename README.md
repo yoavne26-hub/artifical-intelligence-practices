@@ -10,8 +10,8 @@ Course exercises in artificial intelligence, with implementations, written expla
 
 ## Practice 1 at a glance
 
-Give each starting county a party and set a hub budget. The solver finds same-party assignments that minimize the total number of county-to-county moves. In the example below, **two hubs serve three starts in seven moves**.
+Give each starting county a party and set a hub budget. The solver finds same-party assignments that minimize the total number of county-to-county moves. In the example below, **four hubs serve ten starts in 72 moves** after 50 priority-queue removals.
 
-[![Hub Search Lab showing county boundaries, the selected hubs, and the optimal seven-move result](Practice_1/search_visualizer/screenshots/county-map.jpg)](Practice_1/README.md)
+[![Ten-county A* solution with Blue and Red routes, four hubs, and an optimal cost of 72 moves](Practice_1/search_visualizer/screenshots/nationwide-county-map.jpg)](Practice_1/README.md)
 
 [Open the full practice guide](Practice_1/README.md) for setup instructions, a walkthrough of the solver and heuristics, and a longer replay.

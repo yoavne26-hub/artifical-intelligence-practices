@@ -6,7 +6,21 @@
 
 The handout specifies up to **10 starting locations and 5 hubs**. The interactive lab supports up to **12 locations and 12 hub slots** for experimentation. Both interpret the supplied hub count as an upper limit.
 
-![County map showing the completed two-hub assignment and a total cost of seven moves](search_visualizer/screenshots/county-map.jpg)
+## Featured scenario · Ten counties, four hubs
+
+Five Blue starts and five Red starts span the country. With four hub slots, A* found the optimal assignment in **50 queue removals**, with **72 county-to-county moves**.
+
+![Completed nationwide search with ten starting counties, four hubs, and color-coded routes](search_visualizer/screenshots/nationwide-county-map.jpg)
+
+| Party | Starting counties | Selected hub | Moves |
+| --- | --- | --- | ---: |
+| Blue | San Diego, CA · King, WA · Harris, TX · Maricopa, AZ · Denver, CO | Coconino County, AZ | 43 |
+| Red | Miami-Dade, FL · Fulton, GA | Alachua County, FL | 19 |
+| Red | Cook, IL | Cook County, IL | 0 |
+| Red | Suffolk, MA · Philadelphia, PA | Berkshire County, MA | 10 |
+| | | **Total** | **72** |
+
+To reproduce the map, select **Nationwide search**, add Fulton County, GA and Philadelphia County, PA, set Miami-Dade, Cook, Suffolk, Fulton, and Philadelphia to Red, then set **Maximum hubs** to 4. Run the search and jump to the solution.
 
 ## Run the visualizer
 
@@ -38,7 +52,7 @@ Map lines connect county centers along the solver’s graph routes. Diamonds mar
 
 Each frame records one priority-queue removal. Partial assignments may change between consecutive frames as A* explores different branches. A complete assignment has `h = 0`, so its `g` is the total cost.
 
-### Worked example
+### Assignment example · Three counties, two hubs
 
 | Starting county | Party | Assigned hub with two slots | Moves |
 | --- | --- | --- | ---: |
