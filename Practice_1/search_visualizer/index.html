@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" data-type="software">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="page-type" content="software">
+  <meta name="site-kind" content="software">
+  <title>Hub Search Lab</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/map.js" defer></script>
+  <script src="/app.js" defer></script>
+</head>
+<body>
+<header><div><span class="eyebrow">PRACTICE 01 / SEARCH ALGORITHMS</span><h1>Hub Search Lab<span>.</span></h1></div><p>Follow A* from the first estimate to the optimal county assignments.</p></header>
+<main>
+  <aside class="panel">
+    <h2>Scenario</h2>
+    <form id="scenario">
+      <label>Preset<select id="preset"><option value="handout">Assignment example</option><option value="nationwide">Nationwide search</option><option value="impossible">One slot, two parties</option><option value="custom" disabled>Custom scenario</option></select></label>
+      <label>Maximum hubs<select id="slots"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></label>
+      <div class="row-header"><h3>Starting counties</h3><span id="count"></span></div>
+      <div id="locations"></div>
+      <datalist id="county-list"></datalist>
+      <button type="button" class="quiet" id="add">+ Add county</button>
+      <div class="random-counties">
+        <label for="random-count">Random county count</label>
+        <div>
+          <input id="random-count" inputmode="numeric" value="1" aria-describedby="random-status">
+          <button type="button" class="quiet" id="add-random" disabled>Add random counties</button>
+        </div>
+        <p id="random-status" role="status">Loading county list…</p>
+      </div>
+      <button type="submit" class="primary" id="run">Run A* search <span aria-hidden="true">↗</span></button>
+    </form>
+  </aside>
+  <section class="workspace" aria-label="Search replay">
+    <div class="stage">
+      <div class="stage-top"><div><span class="eyebrow">SEARCH REPLAY</span><h2>Assignments</h2></div><span id="status" role="status">Loading…</span></div>
+      <div class="metrics"><div><strong id="g">–</strong><span>g · Travel so far</span></div><div><strong id="h">–</strong><span>h · Lower bound</span></div><div><strong id="f">–</strong><span>f · Queue priority</span></div><div><strong id="frontier">–</strong><span>Queue after pop</span></div></div>
+      <div class="view-controls" aria-label="Replay view">
+        <button id="map-view" type="button" aria-pressed="true">County map</button>
+        <button id="diagram-view" type="button" aria-pressed="false">Assignment diagram</button>
+        <button id="map-fit" type="button" aria-pressed="false">Fit scenario</button>
+      </div>
+      <div id="map-panel">
+        <canvas id="county-map" width="975" height="610" aria-label="US county boundaries and current solver routes" role="img"></canvas>
+        <p id="map-note" aria-live="polite">Loading county boundaries…</p>
+      </div>
+      <div id="diagram" hidden aria-label="County assignments by hub"></div>
+      <div class="legend"><span class="blue">Blue</span><span class="red">Red</span><span class="unassigned">Unassigned</span><span>◆ Hub</span><span>Routes listed below</span></div>
+    </div>
+    <div class="timeline panel">
+      <div class="row-header"><h2>Search timeline</h2><output id="step"></output></div>
+      <input type="range" id="scrubber" min="0" max="0" value="0" aria-label="Priority queue removal">
+      <div class="controls"><button id="previous" aria-label="Previous queue removal">←</button><button id="play">Play</button><button id="next" aria-label="Next queue removal">→</button><button id="finish">Jump to solution</button><label class="speed">Speed <select id="speed"><option value="900">1×</option><option value="450">2×</option><option value="225">4×</option></select></label></div>
+      <p id="event" aria-live="polite"></p>
+      <div id="upcoming" class="upcoming" aria-label="Next queue priorities"></div>
+    </div>
+    <div class="panel routes"><h2>Routes in this state</h2><div id="routes"></div></div>
+  </section>
+</main>
+<template id="location-template"><div class="location"><input type="text" list="county-list" aria-label="County" required placeholder="Enter a county"><select aria-label="Party"><option>Blue</option><option>Red</option></select><button type="button" aria-label="Remove county">×</button></div></template>
+</body>
+</html>

@@ -8,11 +8,14 @@ from itertools import combinations, count
 from math import inf
 from pathlib import Path
 
+# Python can clear __file__ after the script hands control to the interactive prompt.
+SCRIPT_DIR = Path(__file__).resolve().parent
+
 
 def load_county_graph(csv_path=None):
     """Read the CSV into an undirected map of counties to their neighbors."""
     if csv_path is None:
-        csv_path = Path(__file__).with_name("adjacency.csv")
+        csv_path = SCRIPT_DIR / "adjacency.csv"
         if not csv_path.is_file():
             csv_path = csv_path.parent.parent / "adjacency.csv"
 
